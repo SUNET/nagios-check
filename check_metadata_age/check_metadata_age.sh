@@ -49,11 +49,11 @@ exp=$(date -d $dstr +%s)
 now=$(date +%s)
 
 d=$(expr $exp - $now)
-if [ $d -ge $diff_crit ]; then
+if [ $d -lt $diff_crit ]; then
    echo "CRITICAL - metadata in $1 expires in $d seconds"
    echo $status
    exit $STATE_CRITICAL
-elif [ $d -ge $diff_warn ]; then
+elif [ $d -lt $diff_warn ]; then
    echo "WARNING - metadata in $1 expires in $d seconds"
    echo $status
    exit $STATE_WARNING
